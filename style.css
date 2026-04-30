@@ -1,0 +1,381 @@
+/* ============================================
+   1. VARIABLES CSS
+   ============================================ */
+
+:root {
+  /* --- Couleurs principales --- */
+  --color-bg: #0d1117; /* fond général — noir GitHub */
+  --color-surface: #161b22; /* fond des cartes / sections */
+  --color-surface-alt: #1c2333; /* fond alternatif (hover, inputs) */
+  --color-border: #30363d; /* bordures subtiles */
+
+  /* --- Couleurs d'accent --- */
+  --color-primary: #58a6ff; /* bleu — actions principales */
+  --color-primary-hover: #79b8ff; /* bleu clair au hover */
+
+  /* --- Couleurs de feedback --- */
+  --color-correct: #3fb950; /* vert — bonne réponse */
+  --color-correct-bg: #0d2818; /* fond vert sombre */
+  --color-incorrect: #f85149; /* rouge — mauvaise réponse */
+  --color-incorrect-bg: #2d0f0e; /* fond rouge sombre */
+  --color-warning: #d29922; /* jaune — neutre / info */
+
+  /* --- Textes --- */
+  --color-text-primary: #e6edf3; /* texte principal */
+  --color-text-secondary: #8b949e; /* texte secondaire / labels */
+  --color-text-muted: #484f58; /* texte désactivé / placeholder */
+
+  /* --- Typographie --- */
+  --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+
+  --text-xs: 0.75rem; /*  12px */
+  --text-sm: 0.875rem; /*  14px */
+  --text-base: 1rem; /*  16px */
+  --text-lg: 1.125rem; /*  18px */
+  --text-xl: 1.25rem; /*  20px */
+  --text-2xl: 1.5rem; /*  24px */
+  --text-3xl: 1.875rem; /*  30px */
+
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* --- Espacements --- */
+  --space-1: 0.25rem; /*  4px */
+  --space-2: 0.5rem; /*  8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+
+  /* --- Dimensions --- */
+  --app-max-width: 300px; /* largeur max de l'app */
+  --radius-sm: 6px;
+  --radius-sml: 4px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px; /* pilule / cercle */
+
+  /* --- Ombres --- */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --shadow-primary: 0 0 20px rgba(88, 166, 255, 0.15);
+
+  /* --- Transitions --- */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ============================================
+   2. RESET
+   ============================================ */
+
+/* Box model universel */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+/* Supprime les styles par défaut des listes */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Supprime la décoration des liens */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Les images et médias ne débordent jamais */
+img,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Boutons : reset complet des styles navigateur */
+button {
+  all: unset;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* Inputs et textareas héritent de la font */
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Supprime les styles de focus par défaut
+   (on les redéfinit proprement après) */
+:focus {
+  outline: none;
+}
+
+/* Remplace par un focus visible accessible */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ============================================
+   3. BASE
+   ============================================ */
+
+html {
+  font-size: 16px; /* base pour les rem */
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%; /* évite le zoom auto sur mobile */
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+
+  /* Centre l'app verticalement et horizontalement */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--space-4); /* respiration sur mobile */
+}
+
+/* Améliore le rendu typographique */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Code et éléments monospace */
+code,
+pre,
+kbd {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+/* Titres : poids et espacement cohérents */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  font-weight: var(--font-bold);
+  color: var(--color-text-primary);
+}
+
+/* Paragraphes */
+p {
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+}
+
+#app-container {
+  width: var(--app-max-width);
+  height: 400px;
+  max-width: 100%;
+  margin-top: var(--space-8);
+  overflow: hidden;
+}
+#app-container section {
+  background: var(--color-surface);
+  width: var(--app-max-width);
+  height: 400px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+#accueil {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+#accueil .icon {
+  font-size: 3rem;
+}
+#accueil h1 {
+  margin-bottom: var(--space-1);
+}
+#accueil h2 {
+  color: var(--color-text-secondary);
+  font-size: var(--text-xl);
+  font-weight: var(--font-medium);
+}
+#accueil #start-button {
+  transform: translateY(var(--space-10));
+}
+#accueil #start-button button {
+  background: var(--color-primary);
+  padding-inline: var(--space-5);
+  padding-block: var(--space-2);
+  margin-top: var(--space-10);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: var(--transition-base);
+  font-weight: var(--font-bold);
+}
+#accueil #start-button button:hover {
+  background: var(--color-primary-hover);
+  box-shadow: var(--shadow-primary);
+}
+#question #compeur-question {
+  width: 100%;
+  background-color: var(--color-surface-alt);
+  border-top-left-radius: var(--radius-sm);
+  border-top-right-radius: var(--radius-sm);
+}
+#question #compeur-question p:first-child {
+  color: var(--color-text-primary);
+  font-size: var(--text-lg);
+  margin-left: var(--space-2);
+}
+#question #compeur-question p:last-child {
+  color: var(--color-text-primary);
+  margin-left: var(--space-2);
+}
+#question #compeur-question .index-color {
+  color: #58a6ff;
+}
+#question #question-screen {
+  background-color: var(--color-surface-alt);
+  word-break: break-all;
+  margin: 18px 10px 0px 10px;
+  padding: var(--space-1);
+  text-align: left;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sml);
+}
+#question #question-screen p {
+  color: var(--color-text-primary);
+}
+#question #response-button {
+  margin-inline: var(--space-3);
+  transform: translateY(var(--space-16));
+}
+#question #response-button .button {
+  background-color: #252525ce;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding-block: var(--space-1);
+  margin-bottom: var(--space-3);
+  border-radius: var(--radius-sml);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+#question #response-button .button:hover {
+  background-color: #58a6ff;
+}
+#question #response-button .reponse {
+  color: var(--color-text-primary);
+  margin-left: var(--space-3);
+  text-transform: capitalize;
+}
+#question #response-button .choice-icon {
+  background-color: #e6edf3;
+  font-size: var(--text-xs);
+  padding: 1.5px;
+  margin-left: var(--space-2);
+  border-radius: var(--radius-lg);
+}
+#app-container #feedback {
+  background-color: var(--color-correct-bg);
+}
+#app-container #feedback .icon {
+  text-align: center;
+  margin: 30px 0px 10px 0px;
+  font-size: var(--text-3xl);
+}
+#app-container #feedback .res-question {
+  color: var(--color-correct);
+  text-align: center;
+  margin: 30px 0px 10px 0px;
+}
+#app-container #feedback .explication {
+  text-align: center;
+}
+#app-container #feedback #next-button {
+  transform: translateY(128px);
+}
+#app-container #feedback .next-question-button {
+  display: block;
+  margin: 0 auto;
+  background: var(--color-surface-alt);
+  padding-inline: var(--space-5);
+  padding-block: var(--space-2);
+  margin-top: var(--space-4);
+  font-weight: var(--font-bold);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: var(--transition-base);
+}
+#app-container #feedback .next-question-button:hover {
+  background-color: var(--color-surface);
+}
+#app-container #resultat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+#app-container #resultat #score-section {
+background-color: var(--color-surface-alt);
+  padding-inline: var(--space-12);
+  padding-block: var(--space-8);
+  transform: translateY(-10px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-primary);
+}
+#app-container #resultat .score-text {
+  color: var(--color-text-primary);
+  font-size: var(--text-lg);
+}
+#app-container #resultat .note {
+  color: #79b8ff;
+  font-size: var(--text-2xl);
+}
+#resultat #congratulation p:first-child {
+  color: var(--color-text-primary);
+  font-size: var(--text-2xl);
+}
+#resultat .reset {
+  background: var(--color-primary);
+  margin-top: var(--space-10);
+  padding-inline: var(--space-5);
+  padding-block: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: var(--transition-base);
+  font-weight: var(--font-bold);
+}
+#resultat .reset:hover{
+    background-color: var(--color-primary-hover);
+}
