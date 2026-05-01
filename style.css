@@ -326,6 +326,17 @@ p {
 #app-container #feedback {
   flex-direction: column;
 }
+/* Fond vert quand la réponse est correcte */
+#feedback.correct {
+  background-color: var(--color-correct-bg);
+  border: 1px solid var(--color-correct);
+}
+
+/* Fond rouge quand la réponse est incorrecte */
+#feedback.incorrect {
+  background-color: var(--color-incorrect-bg);
+  border: 1px solid var(--color-incorrect);
+}
 #app-container #feedback .feedback-icon {
   margin-top: var(--space-5);
   text-align: center;

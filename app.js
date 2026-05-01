@@ -5,20 +5,11 @@ const etat = {
   score: 0,
   reponsesDonnees: [],
 };
-// Question en cours...
-let questionEnCours = questions[etat.indexCourant];
 
 const startButton = document.querySelector(".start");
 const responseButton = document.querySelectorAll(".button");
 const nextQuestionButton = document.querySelector(".next-question-button");
 const resetButton = document.querySelector(".reset");
-
-//Element de la section feedback
-const feedback = document.querySelector("#feedback");
-const feedbackIcon = document.querySelector(".feedback-icon");
-const feedbackMessage = document.querySelector(".message");
-const feedbackExplication = document.querySelector(".explication");
-const feedbackReponse = document.querySelector(".feedback-reponse");
 
 //Fonctions de l'app
 const showScreen = (id) => {
@@ -77,6 +68,7 @@ const afficherQuestion = () => {
 };
 
 const handleReponse = (indexChoisi) => {
+  let questionEnCours = questions[etat.indexCourant];
   responseButton.forEach((bouton) => {
     bouton.disabled = true;
   });
@@ -93,26 +85,31 @@ const handleReponse = (indexChoisi) => {
 };
 
 const afficherFeedback = () => {
-  const isCorrect = etat.reponsesDonnees[etat.reponsesDonnees.length - 1];
-  if (isCorrect) {
-    feedbackIcon.innerHTML = "&#x2705;";
+  const sectionFeedback = document.getElementById("feedback");
+  const feedbackIcon = document.querySelector(".feedback-icon");
+  const feedbackMessage = document.querySelector(".message");
+  const feedbackReponse = document.querySelector(".feedback-reponse");
+  const feedbackExplication = document.querySelector(".explication");
+  const nextButton = document.querySelector(".next-question-button");
 
-    feedbackMessage.textContent = "Bonne réponse";
-    feedbackMessage.style.color = "#3fb950";
-    nextQuestionButton.textContent = "Question suivante";
-    feedback.style.backgroundColor = "#0d2818";
+  const questionEnCours = questions[etat.indexCourant];
+  const estCorrect = etat.reponsesDonnees[etat.reponsesDonnees.length - 1];
+
+  sectionFeedback.classList.remove("correct", "incorrect");
+
+  if (estCorrect) {
+    feedbackIcon.textContent = "\u2705";
+    feedbackMessage.textContent = "Bonne réponse !";
+    sectionFeedback.classList.add("correct");
   } else {
-    feedbackIcon.innerHTML = "&#x274C;";
-
-    feedbackMessage.textContent = "Mauvaise réponse";
-    feedbackMessage.style.color = "#f85149";
-    feedback.style.backgroundColor = "#2d0f0e";
-
-    feedbackReponse.textContent =
-      questionEnCours.options[questionEnCours.correctIndex];
-
-    feedbackExplication.textContent = questionEnCours.explication;
+    feedbackIcon.textContent = "\u274C";
+    feedbackMessage.textContent = "Mauvaise réponse !";
+    sectionFeedback.classList.add("incorrect");
   }
+
+  feedbackReponse.textContent = "Bonne réponse : " + questionEnCours.options[questionEnCours.correctIndex];
+  
+  nextButton.textContent = etat.indexCourant < questions.length - 1 ? "Question suivante" : "Voir le résultat";
 };
 
 const questionSuivante = () => {
@@ -149,9 +146,6 @@ const afficherResultat = () => {
     observation.textContent = "Mauvais développeur";
   }
 };
-
-showScreen("question")
-afficherQuestion()
 
 startButton.addEventListener("click", startQuiz);
 nextQuestionButton.addEventListener("click", questionSuivante);
