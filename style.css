@@ -372,6 +372,7 @@ background-color: var(--color-surface-alt);
 #resultat #congratulation p:first-child {
   color: var(--color-text-primary);
   font-size: var(--text-2xl);
+  text-transform: capitalize;
 }
 #resultat .reset {
   background: var(--color-primary);
