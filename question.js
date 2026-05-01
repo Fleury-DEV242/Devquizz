@@ -34,3 +34,5 @@ const questions = [
       "map() parcourt chaque élément du tableau, lui applique la fonction passée en argument, et retourne un nouveau tableau avec les résultats. Le tableau original n'est pas modifié. Exemple : [1, 2, 3].map(x => x * 2) retourne [2, 4, 6].",
   },
 ];
+
+export { questions };

@@ -9,7 +9,7 @@
   <body>
     <div id="app-container">
       <!-- Contenue de l'application-->
-      <section id="accueil">
+      <section id="accueil" class="screen">
         <!-- Ecran de demarrage -->
         <div class="icon">🧠</div>
         <h1>DevQuiz</h1>
@@ -19,53 +19,56 @@
         </div>
       </section>
 
-      <section id="question">
+      <section id="question" class="screen active">
         <!-- Ecran des questions -->
         <div id="compeur-question">
           <p>Question</p>
-          <p><span class="index-color">1</span> / 3</p>
+          <p><span class="index-color"></span> / <span class="QuestionNbr"></span></p>
         </div>
 
         <div id="question-screen">
-          <p class="question">Que retourne typeof null en JS ?</p>
+          <p class="question"></p>
         </div>
 
         <div id="response-button">
           <div class="button">
             <div class="choice-icon">1️⃣</div>
-            <p class="reponse">null</p>
+            <p class="reponse one"></p>
           </div>
           <div class="button">
             <div class="choice-icon">2️⃣</div>
-            <p class="reponse">undefined</p>
+            <p class="reponse two"></p>
           </div>
           <div class="button">
             <div class="choice-icon">3️⃣</div>
-            <p class="reponse">object</p>
+            <p class="reponse three"></p>
           </div>
           <div class="button">
             <div class="choice-icon">4️⃣</div>
-            <p class="reponse">string</p>
+            <p class="reponse four"></p>
           </div>
         </div>
       </section>
 
-      <section id="feedback">
+      <section id="feedback" class="screen">
         <!-- Ecran de feedback -->
-          <div class="icon">😀</div>
-        <h3 class="res-question">✅ Bonne réponse !</h3>
-        <p class="explication">💡 C'est un bug historique de JS...</p>
+        <div class="icon"></div>
+        <h3 class="res-question"></h3>
+        <p class="explication"></p>
         <div id="next-button">
           <button class="next-question-button">Question suivante</button>
         </div>
       </section>
 
-      <section id="resultat">
+      <section id="resultat" class="screen">
         <div id="score-section">
           <p class="score-text">Score</p>
           <p class="note">2 / 3</p>
           <div id="congratulation">
-            <p>🎉 <br> Félicitations</p>
+            <p>
+              🎉 <br />
+              Félicitations
+            </p>
             <p>Bon développeur !</p>
           </div>
         </div>
@@ -75,7 +78,7 @@
       </section>
     </div>
 
-    <script src="app.js"></script>
+    <script type="module" src="app.js"></script>
     <script src="question.js"></script>
   </body>
 </html>

@@ -199,7 +199,7 @@ p {
   width: var(--app-max-width);
   height: 400px;
   max-width: 100%;
-  margin-top: var(--space-8);
+  margin-top: var(--space-2);
   overflow: hidden;
 }
 #app-container section {
@@ -210,7 +210,6 @@ p {
   border-radius: var(--radius-sm);
 }
 #accueil {
-  display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
@@ -242,6 +241,9 @@ p {
 #accueil #start-button button:hover {
   background: var(--color-primary-hover);
   box-shadow: var(--shadow-primary);
+}
+#question{
+  flex-direction: column;
 }
 #question #compeur-question {
   width: 100%;
@@ -305,6 +307,7 @@ p {
   border-radius: var(--radius-lg);
 }
 #app-container #feedback {
+  flex-direction: column;
   background-color: var(--color-correct-bg);
 }
 #app-container #feedback .icon {
@@ -339,7 +342,6 @@ p {
   background-color: var(--color-surface);
 }
 #app-container #resultat {
-  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -378,4 +380,10 @@ background-color: var(--color-surface-alt);
 }
 #resultat .reset:hover{
     background-color: var(--color-primary-hover);
+}
+#app-container .screen{
+  display: none;
+}
+#app-container .screen.active{
+  display: flex;
 }
