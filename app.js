@@ -5,16 +5,23 @@ const etat = {
   score: 0,
   reponsesDonnees: [],
 };
+// Question en cours...
 let questionEnCours = questions[etat.indexCourant];
 
 const startButton = document.querySelector(".start");
 const responseButton = document.querySelectorAll(".button");
 const nextQuestionButton = document.querySelector(".next-question-button");
 const resetButton = document.querySelector(".reset");
-const resQuestion = document.querySelector(".res-question");
-const explication = document.querySelector(".explication");
-const feedback = document.querySelector("#feedback");
 
+//Element de la section feedback
+const feedback = document.querySelector("#feedback");
+const feedbackIcon = document.querySelector(".feedback-icon");
+const feedbackMessage = document.querySelector(".message");
+const feedbackExplication = document.querySelector(".explication");
+const feedbackReponse = document.querySelector(".feedback-reponse");
+
+
+//Fonctions de l'app
 const showScreen = (id) => {
   const screen = document.querySelectorAll(".screen");
   screen.forEach((ecran) => {
@@ -80,5 +87,42 @@ const handleReponse = (indexChoisi) => {
   } else {
     etat.reponsesDonnees.push(false);
   }
+
   showScreen("feedback");
+  afficherFeedback();
 };
+
+const afficherFeedback = () => {
+  const isCorrect = etat.reponsesDonnees[etat.reponsesDonnees.length - 1];
+  if (isCorrect) {
+    feedbackIcon.innerHTML = "&#x2705;";
+
+    feedbackMessage.textContent = "Bonne réponse";
+    feedbackMessage.style.color = "#3fb950";
+
+    feedback.style.backgroundColor = "#0d2818";
+  } else {
+    feedbackIcon.innerHTML = "&#x274C;";
+
+    feedbackMessage.textContent = "Mauvaise réponse";
+    feedbackMessage.style.color = "#f85149";
+    feedback.style.backgroundColor = "#2d0f0e";
+  }
+
+  feedbackReponse.textContent =
+    questionEnCours.options[questionEnCours.correctIndex];
+
+  feedbackExplication.textContent = questionEnCours.explication;
+};
+
+const questionSuivante = ()=> {
+  etat.indexCourant++;
+
+  if (etat.indexCourant < questions.length) {
+    showScreen("question");
+    afficherQuestion();
+  } else {
+    showScreen("resultat");
+    afficherResultat();
+  }
+}

@@ -308,23 +308,28 @@ p {
 }
 #app-container #feedback {
   flex-direction: column;
-  background-color: var(--color-correct-bg);
 }
-#app-container #feedback .icon {
+#app-container #feedback .feedback-icon{
+  margin-top: var(--space-5);
   text-align: center;
-  margin: 30px 0px 10px 0px;
-  font-size: var(--text-3xl);
+  font-size: var(--text-xl);
 }
-#app-container #feedback .res-question {
-  color: var(--color-correct);
+#app-container #feedback .message {
+  color: #e6edf3;
   text-align: center;
-  margin: 30px 0px 10px 0px;
+  margin: 5px 0px 20px 0px;
+  font-size: var(--text-2xl);
+}
+#app-container #feedback .feedback-reponse{
+  color: var(--color-text-primary);
+  text-align: center;
+  text-transform: uppercase;
 }
 #app-container #feedback .explication {
   text-align: center;
 }
 #app-container #feedback #next-button {
-  transform: translateY(128px);
+  transform: translateY(70px);
 }
 #app-container #feedback .next-question-button {
   display: block;
