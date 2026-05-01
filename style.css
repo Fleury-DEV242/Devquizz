@@ -197,7 +197,7 @@ p {
 
 #app-container {
   width: var(--app-max-width);
-  height: 400px;
+  height: 450px;
   max-width: 100%;
   margin-top: var(--space-2);
   overflow: hidden;
@@ -205,7 +205,7 @@ p {
 #app-container section {
   background: var(--color-surface);
   width: var(--app-max-width);
-  height: 400px;
+  height: inherit;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
 }
@@ -242,7 +242,7 @@ p {
   background: var(--color-primary-hover);
   box-shadow: var(--shadow-primary);
 }
-#question{
+#question {
   flex-direction: column;
 }
 #question #compeur-question {
@@ -266,8 +266,8 @@ p {
 #question #question-screen {
   background-color: var(--color-surface-alt);
   word-break: break-all;
-  margin: 18px 10px 0px 10px;
-  padding: var(--space-1);
+  margin: 10px 10px 14px 10px;
+  padding: var(--space-2) var(--space-1);
   text-align: left;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sml);
@@ -276,16 +276,20 @@ p {
   color: var(--color-text-primary);
 }
 #question #response-button {
-  margin-inline: var(--space-3);
-  transform: translateY(var(--space-16));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-bottom: var(--space-2);
+  gap: var(--space-3);
+  height: 70%;
 }
 #question #response-button .button {
   background-color: #252525ce;
   display: flex;
   align-items: center;
   flex-direction: row;
-  padding-block: var(--space-1);
-  margin-bottom: var(--space-3);
+  margin-inline: 10px;
+  margin-bottom: var(--space-1);
   border-radius: var(--radius-sml);
   border: 1px solid var(--color-border);
   cursor: pointer;
@@ -296,8 +300,21 @@ p {
 }
 #question #response-button .reponse {
   color: var(--color-text-primary);
-  margin-left: var(--space-3);
-  text-transform: capitalize;
+    width: 100%;
+
+  /* Limite la hauteur et active le scroll si nécessaire */
+  min-height: 50px;
+  max-height: 10px;
+  overflow-y: auto;
+
+  /* Gère le texte long proprement */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+
+  /* Aligne le texte correctement */
+  text-align: left;
+  padding: var(--space-3) var(--space-2);
 }
 #question #response-button .choice-icon {
   background-color: #e6edf3;
@@ -309,7 +326,7 @@ p {
 #app-container #feedback {
   flex-direction: column;
 }
-#app-container #feedback .feedback-icon{
+#app-container #feedback .feedback-icon {
   margin-top: var(--space-5);
   text-align: center;
   font-size: var(--text-xl);
@@ -320,7 +337,7 @@ p {
   margin: 5px 0px 20px 0px;
   font-size: var(--text-2xl);
 }
-#app-container #feedback .feedback-reponse{
+#app-container #feedback .feedback-reponse {
   color: var(--color-text-primary);
   text-align: center;
   text-transform: uppercase;
@@ -353,7 +370,7 @@ p {
   text-align: center;
 }
 #app-container #resultat #score-section {
-background-color: var(--color-surface-alt);
+  background-color: var(--color-surface-alt);
   padding-inline: var(--space-12);
   padding-block: var(--space-8);
   transform: translateY(-10px);
@@ -384,12 +401,12 @@ background-color: var(--color-surface-alt);
   transition: var(--transition-base);
   font-weight: var(--font-bold);
 }
-#resultat .reset:hover{
-    background-color: var(--color-primary-hover);
+#resultat .reset:hover {
+  background-color: var(--color-primary-hover);
 }
-#app-container .screen{
+#app-container .screen {
   display: none;
 }
-#app-container .screen.active{
+#app-container .screen.active {
   display: flex;
 }

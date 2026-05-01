@@ -1,7 +1,7 @@
 import { questions } from "./question.js";
 const etat = {
   ecran: "accueil",
-  indexCourant: 0,
+  indexCourant: 1,
   score: 0,
   reponsesDonnees: [],
 };
@@ -46,7 +46,7 @@ const startQuiz = () => {
 
 const afficherQuestion = () => {
   let questionEnCours = questions[etat.indexCourant];
-  
+
   const indexColor = document.querySelector(".index-color");
   const QuestionNbr = document.querySelector(".QuestionNbr");
   indexColor.textContent = questions.indexOf(questionEnCours) + 1;
@@ -99,7 +99,7 @@ const afficherFeedback = () => {
 
     feedbackMessage.textContent = "Bonne réponse";
     feedbackMessage.style.color = "#3fb950";
-
+    nextQuestionButton.textContent = "Question suivante";
     feedback.style.backgroundColor = "#0d2818";
   } else {
     feedbackIcon.innerHTML = "&#x274C;";
@@ -107,12 +107,12 @@ const afficherFeedback = () => {
     feedbackMessage.textContent = "Mauvaise réponse";
     feedbackMessage.style.color = "#f85149";
     feedback.style.backgroundColor = "#2d0f0e";
+
+    feedbackReponse.textContent =
+      questionEnCours.options[questionEnCours.correctIndex];
+
+    feedbackExplication.textContent = questionEnCours.explication;
   }
-
-  feedbackReponse.textContent =
-    questionEnCours.options[questionEnCours.correctIndex];
-
-  feedbackExplication.textContent = questionEnCours.explication;
 };
 
 const questionSuivante = () => {
@@ -122,6 +122,7 @@ const questionSuivante = () => {
     showScreen("question");
     afficherQuestion();
   } else {
+    nextQuestionButton.textContent = "Afficher résultat";
     showScreen("resultat");
     afficherResultat();
   }
@@ -140,7 +141,7 @@ const afficherResultat = () => {
   const mention = document.querySelector(".mention");
   const observation = document.querySelector(".observation");
 
-  if (etat.score > (questions.length / 2)) {
+  if (etat.score > questions.length / 2) {
     mention.innerHTML = `&#x1F389; <br /> excéllent`;
     observation.textContent = "Bon développeur !";
   } else {
@@ -148,6 +149,9 @@ const afficherResultat = () => {
     observation.textContent = "Mauvais développeur";
   }
 };
+
+showScreen("question")
+afficherQuestion()
 
 startButton.addEventListener("click", startQuiz);
 nextQuestionButton.addEventListener("click", questionSuivante);
